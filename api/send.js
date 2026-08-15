@@ -1,6 +1,6 @@
-// api/send.js — заявка с формы -> Telegram (plain text). Секреты ТОЛЬКО в env Vercel.
+// api/send.js: заявка с формы -> Telegram (plain text). Секреты ТОЛЬКО в env Vercel.
 
-// ponytail: rate limit in-memory — живёт в пределах одного тёплого инстанса Vercel,
+// ponytail: rate limit in-memory, живёт в пределах одного тёплого инстанса Vercel,
 // сбрасывается на холодном старте и НЕ общий между параллельными инстансами.
 // Это speed bump против одиночного флуда, не строгий лимит.
 // Апгрейд при реальном абьюзе: Upstash Redis / Vercel KV, ключ по IP.
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
 
-  // 1. Origin/Referer allowlist — режет браузерный абьюз с чужих сайтов и наивных ботов.
+  // 1. Origin/Referer allowlist: режет браузерный абьюз с чужих сайтов и наивных ботов.
   if (!originAllowed(req)) {
     return res.status(403).json({ ok: false, error: 'Forbidden' });
   }
@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ ok: false, error: 'No text' });
   }
 
-  // 5. Секреты — только из env; без них тихий отказ без утечки.
+  // 5. Секреты: только из env; без них тихий отказ без утечки.
   const token = process.env.BOT_TOKEN;
   const chatId = process.env.CHAT_ID;
   if (!token || !chatId) {
@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
   }
 
   // 6. Отправка в Telegram. Без parse_mode = plain text (нет Markdown/HTML-инъекции).
-  //    disable_web_page_preview — чужие ссылки не разворачиваются. AbortController — инстанс не висит.
+  //    disable_web_page_preview: чужие ссылки не разворачиваются. AbortController, инстанс не висит.
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 8000);
   try {

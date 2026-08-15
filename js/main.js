@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Калькулятор потерь: чек × записей в день × рабочих дней × 27%
-  // (18% no-show без напоминаний + ~9% заявок теряется ночью — допущения в подписи блока)
+  // (18% no-show без напоминаний + ~9% заявок теряется ночью: допущения в подписи блока)
   var calcNum = document.getElementById('calcNum');
   if (calcNum) {
     var calcInputs = Array.prototype.slice.call(document.querySelectorAll('.calc-section input[type="range"]'));
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var packageText = packageEl.options[packageEl.selectedIndex].text;
       var socialValue = socialEl ? socialEl.value.trim() : '';
 
-      var text = 'TRIUMPH — Новая заявка с сайта\n'
+      var text = 'TRIUMPH: Новая заявка с сайта\n'
         + '---\n'
         + 'Имя: ' + nameInput.value.trim() + '\n'
         + 'Телефон: ' + phoneInput.value + '\n'
@@ -250,14 +250,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ===== GSAP-слой скролл-анимаций: Lenis + pin-сцена «Как это чинится» + параллакс телефонов =====
-  // Подключается только на index.html; если CDN не загрузился — тихо выходим, всё выше работает без него
+  // Подключается только на index.html; если CDN не загрузился: тихо выходим, всё выше работает без него
   (function() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // плавный скролл — тот самый «маслянистый» ход из концепта
+    // плавный скролл: тот самый «маслянистый» ход из концепта
     if (typeof Lenis !== 'undefined') {
       var lenis = new Lenis({ duration: 1.1 });
       lenis.on('scroll', ScrollTrigger.update);
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var mm = gsap.matchMedia();
 
-    // pin-сцены только на десктопе — на мобильных обычный поток (.fix-list)
+    // pin-сцены только на десктопе: на мобильных обычный поток (.fix-list)
     mm.add('(min-width: 901px)', function() {
 
       // pin-сцена «Как это чинится»: секция зависает, 4 шага сменяются по скроллу
@@ -278,9 +278,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var dots = gsap.utils.toArray('.fix-dot');
         var bar = fix.querySelector('.fix-bar i');
 
-        // GSAP владеет и transform, и видимостью — иначе на обратном скролле состояние рассинхронивается
+        // GSAP владеет и transform, и видимостью: иначе на обратном скролле состояние рассинхронивается
         gsap.set(steps, { autoAlpha: 0, y: 40 });
-        gsap.set(steps[0], { autoAlpha: 1, y: 0 }); // первый шаг виден сразу — блок никогда не пустой
+        gsap.set(steps[0], { autoAlpha: 1, y: 0 }); // первый шаг виден сразу, блок никогда не пустой
         var setActiveDot = function(idx) {
           dots.forEach(function(d, di) { d.classList.toggle('is-active', di === idx); });
         };
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
             anticipatePin: 1, invalidateOnRefresh: true
           }
         });
-        // точки следуют за scrubbed-прогрессом таймлайна, а не за сырым скроллом — иначе точка обгоняет шаг
+        // точки следуют за scrubbed-прогрессом таймлайна, а не за сырым скроллом: иначе точка обгоняет шаг
         tl.eventCallback('onUpdate', function() {
           setActiveDot(Math.min(steps.length - 1, Math.floor(tl.progress() * steps.length)));
         });
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // телефоны «Система в работе»: разноскоростной параллакс по скроллу
-      // transform забирает GSAP, opacity оставляем reveal-у — иначе CSS-transition смазывает scrub
+      // transform забирает GSAP, opacity оставляем reveal-у: иначе CSS-transition смазывает scrub
       gsap.utils.toArray('.phone').forEach(function(ph, i) {
         ph.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
         gsap.to(ph, {

@@ -65,7 +65,7 @@ button:focus-visible {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  /* Unbounded заметно шире Inter — размеры заголовков ужаты, трекинг обнулён */
+  /* Unbounded заметно шире Inter: размеры заголовков ужаты, трекинг обнулён */
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.08;
@@ -1447,7 +1447,7 @@ footer {
   max-width: 420px;
 }
 
-/* ===== Система в работе — телефоны ===== */
+/* ===== Система в работе: телефоны ===== */
 .live-section {
   background: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
@@ -1494,7 +1494,7 @@ footer {
 
 .phone-screen {
   border-radius: 28px;
-  background: #0e1621; /* тёмная тема Telegram — это скрин мессенджера */
+  background: #0e1621; /* тёмная тема Telegram, это скрин мессенджера */
   min-height: 330px;
   padding: 2.4rem 0.8rem 1.1rem;
   display: flex;
@@ -1650,7 +1650,7 @@ footer {
 
 .faq-list details[open] .faq-x { transform: rotate(45deg); }
 
-/* плавное раскрытие — чистый CSS (::details-content); в старых браузерах открывается мгновенно */
+/* плавное раскрытие: чистый CSS (::details-content); в старых браузерах открывается мгновенно */
 .faq-list details::details-content {
   block-size: 0;
   overflow: hidden;
@@ -1680,7 +1680,7 @@ footer {
   }
 }
 
-/* ===== Как это чинится — pin-сцена (GSAP) ===== */
+/* ===== Как это чинится: pin-сцена (GSAP) ===== */
 /* Lenis smooth scroll: без этих правил конфликтует с html{scroll-behavior:smooth} */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -1705,7 +1705,7 @@ html.lenis, html.lenis body { height: auto; }
 
 .fix-steps { position: relative; }
 
-/* без GSAP шаги идут обычным потоком — сайт читабелен, если CDN не загрузился */
+/* без GSAP шаги идут обычным потоком: сайт читабелен, если CDN не загрузился */
 .fix-step { padding: 1.4rem 0; }
 
 /* режим pin-сцены: класс .fx вешает JS только когда GSAP реально загружен (десктоп) */
@@ -1765,7 +1765,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .fix-dot.is-active { background: var(--accent); transform: scale(1.45); }
 
-/* мобильный фолбэк — вертикальный список вместо pin-сцены */
+/* мобильный фолбэк: вертикальный список вместо pin-сцены */
 .fix-list { display: none; border-bottom: 1px solid var(--border-subtle); }
 .fix-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border-subtle); }
 .fix-item:last-child { border-bottom: none; }
@@ -1788,7 +1788,7 @@ html.lenis, html.lenis body { height: auto; }
   .reveal { opacity: 1; transform: none; }
 }
 
-/* ===== v4: рамка «закрываем утечки» — новые блоки ===== */
+/* ===== v4: рамка «закрываем утечки», новые блоки ===== */
 
 /* плашка гарантии в карточке Анализа */
 .guarantee-note {
